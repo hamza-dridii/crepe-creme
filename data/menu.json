@@ -139,7 +139,7 @@
       "id": "mojitos",
       "name": "Mojitos",
       "items": [
-        { "name": "Virgin", "price": 8.8, "image": "/images/menu/mojitos/virgin.jpg" },
+        { "name": "Virgin", "price": 8.8, "image": "/images/mojitos/virgin.png" },
         { "name": "Mojito bleu", "price": 9.8, "image": "/images/menu/mojitos/mojito-bleu.jpg" },
         { "name": "Pomme verte", "price": 10.8, "image": "/images/menu/mojitos/pomme-verte.jpg" },
         { "name": "Kiwi", "price": 10.8, "image": "/images/menu/mojitos/kiwi.jpg" },
