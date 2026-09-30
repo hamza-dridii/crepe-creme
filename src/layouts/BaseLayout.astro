@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import { withBase } from "../lib/paths";
+// Fonts used above the fold, preloaded so the title and nav don't swap in late.
+import figtree from "@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url";
+import lora from "@fontsource-variable/lora/files/lora-latin-wght-normal.woff2?url";
+import playball from "@fontsource/playball/files/playball-latin-400-normal.woff2?url";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#e4ecd2" />
+    <!-- The design is light-only; stops phones' auto dark mode from inverting it. -->
+    <meta name="color-scheme" content="only light" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_TN" />
+    {[playball, lora, figtree].map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <link rel="icon" type="image/png" href={withBase("/favicon.png")} />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#menu">Aller au menu</a>
+    <slot />
+  </body>
+</html>

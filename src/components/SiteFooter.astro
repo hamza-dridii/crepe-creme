@@ -1,0 +1,145 @@
+---
+import Phone from "@lucide/astro/icons/phone";
+import { hours, shop } from "../lib/menu";
+import { withBase } from "../lib/paths";
+import BrandIcon from "./BrandIcon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer id="contact" class="site-footer container">
+  <div class="site-footer__cols">
+    <img
+      class="site-footer__berries"
+      src={withBase("/images/raspberries.webp")}
+      alt=""
+      width="777"
+      height="298"
+      loading="lazy"
+      decoding="async"
+    />
+    <section class="site-footer__col" aria-labelledby="footer-about">
+      <h2 id="footer-about" class="site-footer__title serif">À propos</h2>
+      <p class="site-footer__text">{shop.about}</p>
+      <div class="site-footer__icons">
+        <a class="icon-action site-footer__icon" href={shop.instagram.url} target="_blank" rel="noopener" aria-label={`Instagram ${shop.instagram.handle}`} title="Instagram">
+          <BrandIcon name="instagram" size={28} />
+        </a>
+        <a class="icon-action site-footer__icon" href={shop.facebook} target="_blank" rel="noopener" aria-label={`Facebook ${shop.name}`} title="Facebook">
+          <BrandIcon name="facebook" size={28} />
+        </a>
+        <a class="icon-action site-footer__icon" href={`tel:${shop.phone.tel}`} aria-label={`Appeler le ${shop.phone.display}`} title={shop.phone.display}>
+          <Phone size={28} />
+        </a>
+      </div>
+    </section>
+
+    {
+      hours.length > 0 && (
+        <section class="site-footer__col" aria-labelledby="footer-hours">
+          <h2 id="footer-hours" class="site-footer__title serif">Horaires</h2>
+          <dl class="site-footer__hours">
+            {hours.map(({ days, time }) => (
+              <div>
+                <dt>{days}</dt>
+                <dd>{time}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+  </div>
+
+  <p class="site-footer__copy">© {year} {shop.name} · {shop.location}</p>
+</footer>
+
+<style>
+  .site-footer {
+    display: grid;
+    gap: var(--space-lg);
+    padding-block-end: var(--space-xl);
+  }
+
+  .site-footer__cols {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+    padding-block: var(--space-xl);
+    border-block: var(--rule-hair) solid var(--color-rule);
+  }
+
+  /* A handful of raspberries set down on the footer's top line like on a counter. The photo carries
+     their contact shadows and some transparent room around them; the shift puts the berries' right
+     edge on the page margin and their ground line (4.36% above the photo's bottom) on the line. */
+  .site-footer__berries {
+    position: absolute;
+    inset-block-end: 100%;
+    inset-inline-end: 0;
+    width: clamp(10.5rem, 25.7vw, 20rem);
+    height: auto;
+    translate: 7.21% 4.36%;
+    pointer-events: none;
+  }
+
+  .site-footer__col {
+    display: grid;
+    align-content: start;
+    gap: var(--space-sm);
+  }
+
+  .site-footer__title {
+    font-size: var(--text-md);
+    font-weight: 700;
+  }
+
+  .site-footer__text {
+    max-width: 46ch;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .site-footer__icons {
+    display: flex;
+    gap: var(--space-sm);
+    margin-inline-start: calc(var(--space-sm) * -1);
+  }
+
+  .site-footer__icon {
+    inline-size: 3.25rem;
+    block-size: 3.25rem;
+  }
+
+  .site-footer__hours {
+    display: grid;
+    gap: var(--space-2xs);
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .site-footer__hours div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .site-footer__hours dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .site-footer__copy {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__cols {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+</style>

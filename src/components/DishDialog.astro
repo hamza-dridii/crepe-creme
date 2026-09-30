@@ -1,0 +1,168 @@
+---
+import X from "@lucide/astro/icons/x";
+---
+
+<dialog class="dish" aria-labelledby="dish-name" data-dish-dialog>
+  <img class="dish__img" alt="" width="800" height="800" data-dish-img />
+  <div class="dish__caption">
+    <div class="dish__text">
+      <div class="dish__line">
+        <h2 id="dish-name" class="dish__name" data-dish-name></h2>
+        <p class="dish__price" data-dish-price></p>
+      </div>
+      <p class="dish__desc" data-dish-desc></p>
+    </div>
+    <form method="dialog">
+      <button class="icon-action" aria-label="Fermer">
+        <X size={22} />
+      </button>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-dish-dialog]");
+
+  if (dialog) {
+    const field = <T extends HTMLElement>(name: string) => dialog.querySelector<T>(`[data-dish-${name}]`)!;
+    const img = field<HTMLImageElement>("img");
+    const [price, name, desc] = ["price", "name", "desc"].map((key) => field(key));
+    const text = (root: Element, selector: string) => root.querySelector(selector)?.textContent?.trim() ?? "";
+
+    let openedByPointer = false;
+
+    document.addEventListener("click", (event) => {
+      const card = (event.target as Element).closest("[data-dish]")?.closest(".card");
+      if (!card) return;
+      const photo = card.querySelector("img")!;
+      img.src = photo.currentSrc || photo.src;
+      name.textContent = text(card, ".card__name");
+      img.alt = name.textContent;
+      price.textContent = text(card, ".card__price");
+      desc.textContent = text(card, ".card__desc");
+      desc.hidden = !desc.textContent;
+      openedByPointer = event.detail > 0; // 0 when triggered with Enter/Space
+      dialog.showModal();
+    });
+
+    // A tap on the backdrop targets the dialog itself; closing here consumes the tap, so it never
+    // reaches the card underneath (native light dismiss lets it through). The press must also start
+    // on the backdrop, so dragging out of the dialog (e.g. selecting text) doesn't close it.
+    let pressedBackdrop = false;
+    dialog.addEventListener("pointerdown", (event) => (pressedBackdrop = event.target === dialog));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog && pressedBackdrop) dialog.close();
+    });
+
+    // Focus returns to the photo on close; keep that for keyboard users, but don't leave a focus
+    // ring on the card after a mouse or touch close.
+    dialog.addEventListener("close", () => {
+      if (openedByPointer) (document.activeElement as HTMLElement | null)?.blur();
+    });
+  }
+</script>
+
+<style>
+  /* A photo lightbox: the full square photo, with a slim solid caption strip underneath. */
+  .dish {
+    width: min(100% - 2 * var(--page-gutter), 88dvh - 6rem, 44rem);
+    max-width: none;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-leaf);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-card);
+    transition:
+      opacity var(--dur-short) var(--ease-out),
+      scale var(--dur-short) var(--ease-out);
+  }
+
+  /* Opens with a soft fade + scale; closes instantly so nothing lingers behind. */
+  @starting-style {
+    .dish[open] {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+
+  .dish::backdrop {
+    background: var(--color-backdrop);
+    backdrop-filter: blur(4px);
+    transition: opacity var(--dur-short) var(--ease-out);
+  }
+
+  @starting-style {
+    .dish[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  :global(html:has(.dish[open])) {
+    overflow: hidden;
+  }
+
+  .dish__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--color-image-bg);
+  }
+
+  .dish__caption {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-xs) var(--space-md) var(--space-md);
+  }
+
+  .dish__text {
+    display: grid;
+    flex: 1;
+    gap: var(--space-3xs);
+    min-width: 0;
+  }
+
+  .dish__line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 var(--space-md);
+    padding-block-start: var(--space-xs);
+    font-family: var(--font-display);
+  }
+
+  .dish__name {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+
+  .dish__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .dish__price {
+    font-size: var(--text-md);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-price);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 40rem) {
+    .dish__caption {
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-sm) var(--space-lg) var(--space-lg);
+    }
+
+    .dish__name,
+    .dish__price {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

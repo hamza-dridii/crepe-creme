@@ -1,0 +1,83 @@
+---
+import Clock from "@lucide/astro/icons/clock";
+import Navigation from "@lucide/astro/icons/navigation";
+import { hours, shop } from "../lib/menu";
+import Herb from "./Herb.astro";
+
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(shop.mapQuery)}&z=17&hl=fr&output=embed`;
+---
+
+<section id="visite" class="visit container" aria-labelledby="visit-title">
+  <header class="section-head">
+    <h2 id="visit-title" class="section-title">Nous trouver</h2>
+    <p class="section-lede">Passez prendre un café ou une crêpe à {shop.location}.</p>
+    {
+      hours.map(({ days, time }) => (
+        <p class="visit__hours">
+          <Clock size={16} />
+          {days} · {time}
+        </p>
+      ))
+    }
+  </header>
+
+  <div class="visit__map">
+    <iframe
+      src={mapEmbed}
+      title={`Carte Google Maps : ${shop.name}, ${shop.location}`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
+    <Herb class="visit__vine" />
+  </div>
+
+  <a class="action visit__directions" href={shop.mapsUrl} target="_blank" rel="noopener">
+    <Navigation size={18} />
+    Itinéraire
+  </a>
+</section>
+
+<style>
+  .visit {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl) var(--space-3xl);
+  }
+
+  .visit__hours {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .visit__directions {
+    font-size: var(--text-md);
+  }
+
+  .visit__map {
+    position: relative;
+    width: 100%;
+    max-width: 60rem;
+  }
+
+  .visit__map iframe {
+    width: 100%;
+    height: clamp(18rem, 45vw, 28rem);
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: var(--color-image-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* A vine hanging from the map frame's top edge, inside the frame so it's never cut. */
+  .visit__map :global(.visit__vine) {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: clamp(0.5rem, 3vw, 2rem);
+    width: clamp(2.75rem, 6vw, 5rem);
+    --sway: 7.5s;
+  }
+</style>

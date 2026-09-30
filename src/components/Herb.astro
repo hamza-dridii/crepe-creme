@@ -1,0 +1,91 @@
+---
+// A hand-drawn hanging vine in the spirit of the printed menu's foliage.
+// The stem starts at the very top of the drawing, so it reads as attached to whatever edge it hangs from.
+interface Props {
+  class?: string;
+}
+
+type Leaf = [x: number, y: number, angle: number, scale: number];
+
+const leaves: Leaf[] = [
+  [97, 30, 30, 1.1], [94, 55, 150, 1], [86, 90, 40, 1.2], [78, 122, 158, 1.1],
+  [68, 162, 35, 1.2], [67, 198, 168, 1.2], [70, 238, 45, 1.1], [64, 278, 152, 1.2],
+  [57, 318, 50, 1], [52, 356, 162, 1.1], [48, 396, 55, 0.9], [44, 432, 148, 0.9], [40, 468, 100, 0.8],
+];
+
+
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["herb", className]} viewBox="-16 0 180 520" aria-hidden="true">
+  <path class="herb__stem" d="M100 0C90 80 60 140 70 220S50 360 40 470" />
+  {
+    leaves.map(([x, y, angle, scale]) => (
+      <g transform={`translate(${x} ${y}) rotate(${angle}) scale(${scale * 1.3})`}>
+        <path class="herb__leaf" d="M0 0C9-14 30-15 44 0C30 15 9 14 0 0Z" />
+        <path class="herb__shade" d="M0 0C9-14 30-15 44 0Z" />
+        <path class="herb__rib" d="M3 0H40" />
+      </g>
+    ))
+  }
+</svg>
+
+<style>
+  .herb {
+    height: auto;
+    pointer-events: none;
+    /* Pivot at the top centre: mirroring (scale: -1 1) then keeps the vine in its own box, and the sway
+       still swings from within a few pixels of where the stem is attached. */
+    transform-origin: 50% 0;
+    animation:
+      herb-drop 900ms var(--ease-out) both,
+      herb-sway var(--sway, 7s) ease-in-out 900ms infinite alternate;
+  }
+
+  @keyframes herb-drop {
+    from {
+      opacity: 0;
+      translate: 0 -1.5rem;
+    }
+  }
+
+  @keyframes herb-sway {
+    from {
+      rotate: -1.5deg;
+    }
+    to {
+      rotate: 1.5deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .herb {
+      animation: none;
+    }
+  }
+
+  .herb__stem,
+  .herb__rib {
+    fill: none;
+    stroke: var(--color-herb-stem);
+    stroke-linecap: round;
+  }
+
+  .herb__stem {
+    stroke-width: 2.5;
+  }
+
+  .herb__rib {
+    stroke-width: 1;
+  }
+
+
+  .herb__leaf {
+    fill: var(--color-herb);
+  }
+
+  .herb__shade {
+    fill: var(--color-herb-dark);
+  }
+
+</style>

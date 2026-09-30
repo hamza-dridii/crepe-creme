@@ -1,0 +1,453 @@
+---
+import ChevronLeft from "@lucide/astro/icons/chevron-left";
+import ChevronRight from "@lucide/astro/icons/chevron-right";
+import { categories, shop } from "../lib/menu";
+import DishDialog from "./DishDialog.astro";
+import MenuCard from "./MenuCard.astro";
+---
+
+<section id="menu" class="menu" aria-labelledby="menu-title">
+  <header class="menu__head section-head container">
+    <h1 id="menu-title" class="menu__title reveal" style="--i: 2">Menu</h1>
+    <p class="menu__slogan reveal" style="--i: 3">{shop.slogan}</p>
+  </header>
+
+  <nav class="menu__nav reveal" style="--i: 4" aria-label="Catégories du menu" data-menu-nav>
+    <button class="menu__arrow menu__arrow--prev icon-action" type="button" tabindex="-1" aria-hidden="true" data-scroll="-1">
+      <ChevronLeft size={20} />
+    </button>
+    <ul class="menu__tabs" data-menu-tabs>
+      {
+        categories.map(({ id, name }) => (
+          <li>
+            <a class="menu__tab action" href={`#${id}`}>
+              {name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <button class="menu__arrow menu__arrow--next icon-action" type="button" tabindex="-1" aria-hidden="true" data-scroll="1">
+      <ChevronRight size={20} />
+    </button>
+  </nav>
+
+  <div class="menu__panels" data-menu-panels>
+    {
+      categories.map(({ id, name, note, items }, categoryIndex) => (
+        <section id={id} class="menu__category" aria-labelledby={`${id}-title`}>
+          <div class="menu__slide container">
+            <header class="section-head">
+              <h2 id={`${id}-title`} class="section-title">
+                {name}
+              </h2>
+              {note && <p class="section-lede">{note}</p>}
+            </header>
+            <div class="menu__grid">
+              {items.map((item, itemIndex) => (
+                <MenuCard item={item} eager={categoryIndex === 0 && itemIndex < 3} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+  <DishDialog />
+</section>
+
+<script>
+  // Progressive enhancement: without JS every category is listed one after another and the tabs are
+  // plain anchors. With JS the categories become a horizontal strip you swipe through, one per screen.
+  const nav = document.querySelector<HTMLElement>("[data-menu-nav]");
+  const list = document.querySelector<HTMLElement>("[data-menu-tabs]");
+  const strip = document.querySelector<HTMLElement>("[data-menu-panels]");
+
+  if (nav && list && strip) {
+    const tabs = [...list.querySelectorAll<HTMLAnchorElement>("a")];
+    const panels = tabs.map((tab) => document.getElementById(tab.hash.slice(1))!);
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    const motion = (): ScrollBehavior => (reduceMotion.matches ? "instant" : "smooth");
+    let active = -1; // category highlighted in the tab row
+    let settled = -1; // category the strip last came to rest on
+    let target: number | null = null; // category a tab click is sliding to
+
+    list.setAttribute("role", "tablist");
+    tabs.forEach((tab, i) => {
+      tab.parentElement?.setAttribute("role", "presentation");
+      tab.setAttribute("role", "tab");
+      tab.id = `tab-${panels[i].id}`;
+      tab.setAttribute("aria-controls", panels[i].id);
+      panels[i].setAttribute("role", "tabpanel");
+      panels[i].setAttribute("aria-labelledby", tab.id);
+    });
+    strip.setAttribute("data-carousel", "");
+
+    // Edge fades and arrows only show on the side where more categories are hidden.
+    const updateEdges = () => {
+      const max = list.scrollWidth - list.clientWidth;
+      nav.toggleAttribute("data-more-start", list.scrollLeft > 2);
+      nav.toggleAttribute("data-more-end", list.scrollLeft < max - 2);
+    };
+    list.addEventListener("scroll", updateEdges, { passive: true });
+    new ResizeObserver(updateEdges).observe(list);
+
+    nav.addEventListener("click", (event) => {
+      const arrow = (event.target as Element).closest<HTMLElement>("[data-scroll]");
+      if (arrow) list.scrollBy({ left: Number(arrow.dataset.scroll) * list.clientWidth * 0.6, behavior: motion() });
+    });
+
+    // Panel heights are cached (kept current by a ResizeObserver below), so scrolling never measures them.
+    // The width is read live: after a resize, scroll events can fire before any observer has run.
+    let stripHeight = 0;
+    const heights = panels.map((panel) => panel.offsetHeight);
+    const indexAt = () => Math.round(strip.scrollLeft / strip.clientWidth);
+    const setHeight = (px: number) => {
+      stripHeight = px;
+      strip.style.height = `${px}px`;
+    };
+    // The strip is as tall as the category on screen, so short ones leave no empty gap.
+    const fitHeight = () => setHeight(heights[Math.max(0, active)]);
+    const revealTop = () => {
+      if (strip.getBoundingClientRect().top < 0) strip.scrollIntoView({ block: "start", behavior: motion() });
+    };
+
+    const highlight = (index: number, behavior = motion()) => {
+      if (index === active) return;
+      active = index;
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+      });
+      const tab = tabs[index];
+      list.scrollTo({ left: tab.offsetLeft - (list.clientWidth - tab.offsetWidth) / 2, behavior });
+    };
+
+    // Off-screen categories are skipped by Tab and screen readers but stay searchable with Ctrl+F:
+    // finding a dish in another category scrolls the strip there, which switches the tab.
+    const conceal = (panel: HTMLElement, hidden: boolean) => {
+      if (hidden) panel.setAttribute("aria-hidden", "true");
+      else panel.removeAttribute("aria-hidden");
+      panel.querySelectorAll<HTMLElement>("button").forEach((button) => (button.tabIndex = hidden ? -1 : 0));
+    };
+
+    // Once the strip comes to rest. Only a real change of category updates the URL and scrolls the
+    // page, so loading the page, a #link elsewhere, or rotating the phone never jumps anywhere.
+    const settle = () => {
+      target = null;
+      highlight(indexAt());
+      panels.forEach((panel, i) => conceal(panel, i !== active));
+      fitHeight();
+      // Warm up the first photos of the neighbouring categories so a swipe never shows empty frames.
+      for (const neighbour of [panels[active - 1], panels[active + 1]]) {
+        neighbour?.querySelectorAll<HTMLImageElement>('img[loading="lazy"]').forEach((img, n) => n < 4 && (img.loading = "eager"));
+      }
+      if (active === settled) return;
+      const first = settled === -1;
+      settled = active;
+      if (first) return;
+      history.replaceState(null, "", `#${panels[active].id}`);
+      revealTop();
+    };
+
+    let settleTimer = 0;
+    strip.addEventListener(
+      "scroll",
+      () => {
+        if (target === null) highlight(indexAt());
+        // Make room for a taller category as soon as it starts sliding in, so it's never clipped.
+        const position = strip.scrollLeft / strip.clientWidth;
+        const tallest = Math.max(heights[Math.floor(position)] ?? 0, heights[Math.ceil(position)] ?? 0);
+        if (tallest > stripHeight) setHeight(tallest);
+        clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(settle, 120);
+      },
+      { passive: true },
+    );
+
+    // Neighbouring categories slide; far ones jump, so the strip never races past a dozen menus.
+    const go = (index: number) => {
+      if (index === active && target === null) return revealTop();
+      target = index;
+      highlight(index);
+      conceal(panels[index], false);
+      const smooth = Math.abs(index - indexAt()) === 1 && !reduceMotion.matches;
+      strip.scrollTo({ left: index * strip.clientWidth, behavior: smooth ? "smooth" : "instant" });
+      if (!smooth) settle();
+    };
+
+    // Trackpads and Shift + wheel: one sideways flick moves exactly one category (native snapping
+    // needs a drag past half the screen). Vertical scrolling is left alone.
+    let wheelTotal = 0;
+    let wheelLocked = false;
+    let wheelTimer = 0;
+    strip.addEventListener(
+      "wheel",
+      (event) => {
+        const sideways = event.shiftKey ? event.deltaX || event.deltaY : event.deltaX;
+        if (Math.abs(sideways) <= Math.abs(event.shiftKey ? 0 : event.deltaY)) return;
+        event.preventDefault();
+        clearTimeout(wheelTimer);
+        wheelTimer = window.setTimeout(() => {
+          wheelLocked = false;
+          wheelTotal = 0;
+        }, 250);
+        if (wheelLocked) return;
+        wheelTotal += sideways;
+        if (Math.abs(wheelTotal) < 30) return;
+        wheelLocked = true;
+        go(Math.min(panels.length - 1, Math.max(0, active + Math.sign(wheelTotal))));
+      },
+      { passive: false },
+    );
+
+    list.addEventListener("click", (event) => {
+      const tab = (event.target as Element).closest<HTMLAnchorElement>('[role="tab"]');
+      // Ctrl/Cmd/Shift+click keep the browser's "open in new tab/window".
+      if (!tab || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      event.preventDefault();
+      go(tabs.indexOf(tab));
+    });
+
+    list.addEventListener("keydown", (event) => {
+      const current = tabs.indexOf(document.activeElement as HTMLAnchorElement);
+      const keys: Record<string, number> = { ArrowRight: current + 1, ArrowLeft: current - 1, Home: 0, End: tabs.length - 1 };
+      if (current < 0 || !(event.key in keys)) return;
+      event.preventDefault();
+      const next = (keys[event.key] + tabs.length) % tabs.length;
+      go(next);
+      tabs[next].focus();
+    });
+
+    // Keep the current category in place when the window width changes, and the height right when content does.
+    let width = strip.clientWidth;
+    new ResizeObserver(() => {
+      if (strip.clientWidth === width) return;
+      width = strip.clientWidth;
+      strip.scrollLeft = Math.max(0, active) * width;
+    }).observe(strip);
+    const panelSizes = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const panel = entry.target as HTMLElement;
+        heights[panels.indexOf(panel)] = entry.borderBoxSize?.[0]?.blockSize ?? panel.offsetHeight;
+      }
+      fitHeight();
+    });
+    panels.forEach((panel) => panelSizes.observe(panel));
+
+    // Open on the category in the URL, if any, without animating anything.
+    const initial = panels.findIndex((panel) => `#${panel.id}` === location.hash);
+    highlight(Math.max(0, initial), "instant");
+    strip.scrollLeft = Math.max(0, initial) * strip.clientWidth;
+    settle();
+    if (initial >= 0) strip.scrollIntoView({ block: "start", behavior: "instant" });
+  }
+</script>
+
+<style>
+  .menu {
+    padding-block: var(--space-lg) var(--space-3xl);
+  }
+
+  .menu__head {
+    padding-block-end: var(--space-xl);
+  }
+
+  .menu__title {
+    font-family: var(--font-script);
+    font-size: clamp(4rem, 8vw + 1.5rem, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+    color: var(--color-forest);
+  }
+
+  .menu__slogan {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-forest);
+  }
+
+  /* A full-width index of categories, set like the section names of a printed menu. */
+  .menu__nav {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+    background: var(--color-bg);
+    border-block: var(--rule-hair) solid var(--color-rule);
+  }
+
+  /* Fades appear only on the side where more categories are hidden. */
+  .menu__nav::before,
+  .menu__nav::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    z-index: 1;
+    inline-size: var(--space-3xl);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-short) var(--ease-out);
+  }
+
+  .menu__nav::before {
+    inset-inline-start: 0;
+    background: linear-gradient(to right, var(--color-bg) 30%, transparent);
+  }
+
+  .menu__nav::after {
+    inset-inline-end: 0;
+    background: linear-gradient(to left, var(--color-bg) 30%, transparent);
+  }
+
+  .menu__nav[data-more-start]::before,
+  .menu__nav[data-more-end]::after {
+    opacity: 1;
+  }
+
+  .menu__tabs {
+    display: flex;
+    margin: 0;
+    padding: 0 0 0 var(--page-gutter);
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-padding-inline: var(--space-3xl);
+  }
+
+  /* End spacer: browsers drop a scroller's end padding, so the last name would touch the edge.
+     Auto margins centre the row when it fits and fall back to the start when it scrolls (unlike
+     `justify-content: safe center`, this works on older iPhones too). */
+  .menu__tabs::after {
+    content: "";
+    flex: 0 0 var(--page-gutter);
+    margin-inline-end: auto;
+  }
+
+  .menu__tabs > li:first-child {
+    margin-inline-start: auto;
+  }
+
+  .menu__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu__tabs > li {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  /* A small dot between names, like a printed menu's index. */
+  .menu__tabs > li + li::before {
+    content: "";
+    inline-size: 4px;
+    block-size: 4px;
+    margin-inline: var(--space-xs);
+    border-radius: 50%;
+    background: var(--color-rule);
+  }
+
+  /* Tabs are text actions: muted until selected, then forest with the caramel underline. */
+  .menu__tab {
+    --action-underline: 3px;
+    --action-underline-offset: var(--space-sm);
+    min-height: 3.5rem;
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+  }
+
+  .menu__tab:hover,
+  .menu__tab[aria-selected="true"] {
+    color: var(--color-forest);
+  }
+
+  .menu__tab:not([aria-selected="true"]):hover::after {
+    transform: scaleX(0);
+  }
+
+  /* Plain chevrons for mouse users, at the true edges of the screen; touch screens swipe. */
+  .menu__arrow {
+    display: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .menu__arrow {
+      position: absolute;
+      inset-block: 0;
+      z-index: 2;
+      display: grid;
+      block-size: auto;
+      inline-size: var(--space-2xl);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity var(--dur-short) var(--ease-out),
+        color var(--dur-short) var(--ease-out),
+        translate var(--dur-micro) var(--ease-out);
+    }
+
+    .menu__arrow--prev {
+      inset-inline-start: 0;
+    }
+
+    .menu__arrow--next {
+      inset-inline-end: 0;
+    }
+
+    .menu__nav[data-more-start] .menu__arrow--prev,
+    .menu__nav[data-more-end] .menu__arrow--next {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu__arrow--prev:hover {
+      translate: -2px 0;
+    }
+
+    .menu__arrow--next:hover {
+      translate: 2px 0;
+    }
+  }
+
+  /* One category per screen width; swipe or trackpad-scroll sideways, snapping one at a time. */
+  .menu__panels[data-carousel] {
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .menu__panels[data-carousel]::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu__category {
+    flex: 0 0 100%;
+    padding-block-start: var(--space-2xl);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .menu__slide {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .menu__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-xl) var(--space-md);
+  }
+
+  @media (min-width: 40rem) {
+    .menu__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2xl) var(--space-lg);
+    }
+  }
+</style>

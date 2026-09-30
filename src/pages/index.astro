@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import MenuSection from "../components/MenuSection.astro";
+import Visit from "../components/Visit.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { hours, shop } from "../lib/menu";
+
+// Lets search engines show the address, phone, hours and social links in results and on Maps.
+const business = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: shop.name,
+  description: shop.about,
+  telephone: shop.phone.tel,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: shop.address.street,
+    addressLocality: shop.address.city,
+    addressCountry: shop.address.country,
+  },
+  openingHours: hours.map(({ schema }) => schema),
+  servesCuisine: ["Crêpes", "Pâtisseries", "Café"],
+  currenciesAccepted: shop.currency,
+  hasMap: shop.mapsUrl,
+  sameAs: [shop.instagram.url, shop.facebook],
+};
+---
+
+<BaseLayout
+  title={`${shop.name} · ${shop.tagline} à ${shop.location}`}
+  description={`${shop.name}, crêperie et café à ${shop.location}. Crêpes sucrées et salées, cafés, jus, mojitos et pâtisseries faits maison. Menu et prix en ligne.`}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(business).replaceAll("<", "\\u003c")} />
+  <SiteHeader />
+  <main>
+    <MenuSection />
+    <Visit />
+  </main>
+  <SiteFooter />
+</BaseLayout>

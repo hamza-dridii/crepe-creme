@@ -1,0 +1,28 @@
+{
+  "name": "crepe-creme",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource-variable/lora": "^5.3.0",
+    "@fontsource/playball": "^5.3.0",
+    "@lucide/astro": "^1.48.0",
+    "astro": "^7.3.5",
+    "simple-icons": "^16.33.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.4",
+    "typescript": "^6.0.3"
+  }
+}

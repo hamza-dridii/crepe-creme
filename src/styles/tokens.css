@@ -1,0 +1,72 @@
+:root {
+  /* Page: creamy green gradient */
+  --color-bg: oklch(93% 0.035 120);
+  --color-bg-2: oklch(88% 0.045 132);
+  --color-surface: oklch(97.5% 0.015 90);
+  --color-text: oklch(29% 0.045 150);
+  --color-text-muted: oklch(43% 0.035 140);
+  --color-rule: oklch(80% 0.04 130);
+
+  /* Forest green for controls and active states */
+  --color-forest: oklch(34% 0.06 150);
+  --color-on-forest: oklch(97.5% 0.015 90);
+
+  /* Caramel for prices and small accents */
+  --color-price: oklch(52% 0.1 58);
+  --color-accent: oklch(62% 0.11 65);
+  --color-focus: oklch(50% 0.14 60);
+
+  /* Herbs drawn like the foliage on the printed menu */
+  --color-herb: oklch(63% 0.1 132);
+  --color-herb-dark: oklch(49% 0.09 140);
+  --color-herb-stem: oklch(46% 0.05 85);
+
+  /* Surface behind media while it loads, and the dimmed page behind the dish view */
+  --color-image-bg: oklch(89.5% 0.035 125);
+  --color-backdrop: oklch(22% 0.03 150 / 0.7);
+
+  /* A brush script for "Menu" (as on the printed menu), a warm readable serif for titles, a soft sans for items. */
+  --font-script: "Playball", cursive;
+  --font-display: "Lora Variable", ui-serif, Georgia, serif;
+  --font-body: "Figtree Variable", ui-sans-serif, sans-serif;
+
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-xl: 1.9531rem;
+  --text-2xl: clamp(2rem, 3vw + 1rem, 3rem);
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --page-max: 76rem;
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+
+  --radius-sm: 0.5rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+  /* Leaf-shaped frames: two round corners, two tight ones (swap them for the hover state). */
+  --radius-leaf: 2.75rem 0.5rem;
+  --radius-leaf-flipped: 0.5rem 2.75rem;
+
+  --rule-hair: 1px;
+
+  --shadow-card: 0 18px 36px -22px oklch(29% 0.045 150 / 0.45);
+  --color-frame-line: oklch(34% 0.06 150 / 0.45);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --z-sticky: 200;
+}

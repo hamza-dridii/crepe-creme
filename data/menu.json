@@ -1,0 +1,231 @@
+{
+  "shop": {
+    "name": "Crêpe Crème",
+    "tagline": "Crêperie et Café",
+    "slogan": "Fait maison avec amour",
+    "about": "Crêperie et café à Monastir, avenue Hédi Nouira. Crêpes sucrées et salées, cheesecakes, tiramisus : tout est fait maison, sur place. Un endroit cosy pour un petit déjeuner, un goûter ou une pause gourmande en soirée.",
+    "location": "Monastir",
+    "address": { "street": "Avenue Hédi Nouira", "city": "Monastir", "country": "TN" },
+    "phone": { "display": "58 338 186", "tel": "+21658338186" },
+    "instagram": {
+      "handle": "@crepecreme_monastir",
+      "url": "https://www.instagram.com/crepecreme_monastir"
+    },
+    "facebook": "https://www.facebook.com/p/Cr%C3%AApe-Cr%C3%A8me-61577309855305/",
+    "mapQuery": "QRJ2+2XX Crêpe Crème, Avenue Hédi Nouira, Monastir",
+    "mapsUrl": "https://maps.app.goo.gl/Jf3cqUKvUFt6Bwrn7",
+    "hours": [{ "days": "Tous les jours", "time": "7h – minuit", "schema": "Mo-Su 07:00-24:00" }],
+    "currency": "TND"
+  },
+  "categories": [
+    {
+      "id": "petits-dejeuners",
+      "name": "Petits Déjeuners",
+      "items": [
+        { "name": "Classique", "description": "Café au choix, mini jus, eau 0,5 L, viennoiserie", "price": 8, "image": "/images/menu/petits-dejeuners/classique.jpg" },
+        { "name": "Le P'tit Complet", "description": "Café au choix, mini jus, eau 0,5 L, viennoiserie mini, mini crêpe ou mini omelette", "price": 14.5, "image": "/images/menu/petits-dejeuners/le-p-tit-complet.jpg" },
+        { "name": "Healthy", "description": "Café au choix, cookie healthy et mini omelette, eau 0,5 L, bol de yaourt et granola", "price": 16, "image": "/images/menu/petits-dejeuners/healthy.jpg" },
+        { "name": "Gourmand", "description": "Café au choix, mini jus, eau 0,5 L, viennoiserie mini, mini crêpe ou mini omelette, fondant au chocolat ou mini cheesecake", "price": 18, "image": "/images/menu/petits-dejeuners/gourmand.jpg" }
+      ]
+    },
+    {
+      "id": "patisseries",
+      "name": "Pâtisseries",
+      "items": [
+        { "name": "Cheesecake au choix", "description": "Nutella, Noisette, Caramel, Citron", "price": 8.8, "image": "/images/menu/patisseries/cheesecake-au-choix.jpg" },
+        { "name": "Cheesecake", "description": "Pistache, Spéculoos, Framboise, Fruits rouges", "price": 9.9, "image": "/images/menu/patisseries/cheesecake.jpg" },
+        { "name": "San Sebastián", "price": 7, "image": "/images/menu/patisseries/san-sebastian-1.jpg" },
+        { "name": "San Sebastián", "description": "Nutella, Noisette, Caramel", "price": 9, "image": "/images/menu/patisseries/san-sebastian-2.jpg" },
+        { "name": "San Sebastián", "description": "Pistache, Spéculoos, Framboise, Fruits rouges", "price": 10.5, "image": "/images/menu/patisseries/san-sebastian-3.jpg" },
+        { "name": "Tiramisu", "description": "Nutella, Noisette, Caramel", "price": 8, "image": "/images/menu/patisseries/tiramisu-1.jpg" },
+        { "name": "Tiramisu", "description": "Pistache, Spéculoos, Framboise, Fruits rouges", "price": 9, "image": "/images/menu/patisseries/tiramisu-2.jpg" },
+        { "name": "Cookie healthy", "price": 4.5, "image": "/images/menu/patisseries/cookie-healthy.jpg" },
+        { "name": "Fondant Chocolat", "price": 4.8, "image": "/images/menu/patisseries/fondant-chocolat.jpg" },
+        { "name": "Croissant", "price": 2.6, "image": "/images/menu/patisseries/croissant.jpg" }
+      ]
+    },
+    {
+      "id": "cafes",
+      "name": "Cafés",
+      "items": [
+        { "name": "Express", "price": 3.5, "image": "/images/menu/cafes/express.jpg" },
+        { "name": "Américain", "price": 3.6, "image": "/images/menu/cafes/americain.jpg" },
+        { "name": "Capucin", "price": 3.8, "image": "/images/menu/cafes/capucin.jpg" },
+        { "name": "Café crème", "price": 4, "image": "/images/menu/cafes/cafe-creme.jpg" },
+        { "name": "Nescafé", "price": 4, "image": "/images/menu/cafes/nescafe.jpg" },
+        { "name": "Chocolat au lait", "price": 3.8, "image": "/images/menu/cafes/chocolat-au-lait.jpg" },
+        { "name": "Cappuccino", "price": 5.8, "image": "/images/menu/cafes/cappuccino.jpg" },
+        { "name": "Café turc", "price": 3.8, "image": "/images/menu/cafes/cafe-turc.jpg" },
+        { "name": "Café Nutella", "price": 8.8, "image": "/images/menu/cafes/cafe-nutella.jpg" },
+        { "name": "Café aromatisé", "description": "Noisette, vanille, chocolat blanc, beurre salé", "price": 5.5, "image": "/images/menu/cafes/cafe-aromatise.jpg" },
+        { "name": "Café pistache (Latte)", "price": 9.8, "image": "/images/menu/cafes/cafe-pistache-latte.jpg" },
+        { "name": "Café noisette (Latte)", "price": 8.8, "image": "/images/menu/cafes/cafe-noisette-latte.jpg" },
+        { "name": "Café spéculoos (Latte)", "price": 9.8, "image": "/images/menu/cafes/cafe-speculoos-latte.jpg" },
+        { "name": "Café vanille (Latte)", "price": 5.5, "image": "/images/menu/cafes/cafe-vanille-latte.jpg" },
+        { "name": "Café beurre de cacahuète (Latte)", "price": 8.8, "image": "/images/menu/cafes/cafe-beurre-de-cacahuete-latte.jpg" },
+        { "name": "Iced coffee", "price": 7, "image": "/images/menu/cafes/iced-coffee.jpg" },
+        { "name": "Iced coffee aromatisé", "description": "Caramel, noisette, spéculoos, vanille", "price": 8, "image": "/images/menu/cafes/iced-coffee-aromatise.jpg" },
+        { "name": "Ice Tiramisu", "price": 10, "image": "/images/menu/cafes/ice-tiramisu.jpg" },
+        { "name": "Ice américain", "price": 6, "image": "/images/menu/cafes/ice-americain.jpg" }
+      ]
+    },
+    {
+      "id": "nespresso",
+      "name": "Nespresso",
+      "items": [
+        { "name": "Café crème Nespresso", "price": 5, "image": "/images/menu/nespresso/cafe-creme-nespresso.jpg" },
+        { "name": "Capucin Nespresso", "price": 4.8, "image": "/images/menu/nespresso/capucin-nespresso.jpg" },
+        { "name": "Express Nespresso", "price": 4.5, "image": "/images/menu/nespresso/express-nespresso.jpg" },
+        { "name": "Américain Nespresso", "price": 4.5, "image": "/images/menu/nespresso/americain-nespresso.jpg" }
+      ]
+    },
+    {
+      "id": "chocolat",
+      "name": "Chocolat",
+      "items": [
+        { "name": "Chocolat Crêpe Crème", "description": "Banane, fruits secs, chantilly", "price": 9.8, "image": "/images/menu/chocolat/chocolat-crepe-creme.jpg" },
+        { "name": "Chocolat fruits secs + chantilly", "price": 7.8, "image": "/images/menu/chocolat/chocolat-fruits-secs-chantilly.jpg" },
+        { "name": "Chocolat chantilly", "price": 6.8, "image": "/images/menu/chocolat/chocolat-chantilly.jpg" },
+        { "name": "Chocolat nature", "price": 6, "image": "/images/menu/chocolat/chocolat-nature.jpg" }
+      ]
+    },
+    {
+      "id": "boissons",
+      "name": "Boissons",
+      "items": [
+        { "name": "Boissons énergétiques", "price": 7.8, "image": "/images/menu/boissons/boissons-energetiques.jpg" },
+        { "name": "Soda", "price": 3.8, "image": "/images/menu/boissons/soda.jpg" },
+        { "name": "Eau Minérale 1 L", "price": 2.5, "image": "/images/menu/boissons/eau-minerale-1-l.jpg" },
+        { "name": "Eau Minérale 0,5 L", "price": 1.4, "image": "/images/menu/boissons/eau-minerale-0-5-l.jpg" }
+      ]
+    },
+    {
+      "id": "thes",
+      "name": "Thés",
+      "items": [
+        { "name": "Thé aux amandes", "price": 6, "image": "/images/menu/thes/the-aux-amandes.jpg" },
+        { "name": "Thé (infusion / kyufi)", "price": 4, "image": "/images/menu/thes/the-infusion-kyufi.jpg" },
+        { "name": "Verveine", "price": 3.8, "image": "/images/menu/thes/verveine.jpg" }
+      ]
+    },
+    {
+      "id": "smoothies",
+      "name": "Smoothies",
+      "items": [
+        { "name": "Myrtille (Blueberry)", "price": 10, "image": "/images/menu/smoothies/myrtille-blueberry.jpg" },
+        { "name": "Fruits rouges", "price": 10, "image": "/images/menu/smoothies/fruits-rouges.jpg" },
+        { "name": "Pomme verte", "price": 10, "image": "/images/menu/smoothies/pomme-verte.jpg" },
+        { "name": "Kiwi", "price": 10, "image": "/images/menu/smoothies/kiwi.jpg" },
+        { "name": "Fruits de la passion", "price": 10, "image": "/images/menu/smoothies/fruits-de-la-passion.jpg" },
+        { "name": "Mangue", "price": 10, "image": "/images/menu/smoothies/mangue.jpg" },
+        { "name": "Ananas", "price": 10, "image": "/images/menu/smoothies/ananas.jpg" },
+        { "name": "Framboise", "price": 10, "image": "/images/menu/smoothies/framboise.jpg" },
+        { "name": "Pêche", "price": 10, "image": "/images/menu/smoothies/peche.jpg" }
+      ]
+    },
+    {
+      "id": "jus",
+      "name": "Jus",
+      "items": [
+        { "name": "Citronnade", "price": 4.8, "image": "/images/menu/jus/citronnade.jpg" },
+        { "name": "Orange", "price": 4.8, "image": "/images/menu/jus/orange.jpg" },
+        { "name": "Kiwi", "price": 7, "image": "/images/menu/jus/kiwi.jpg" },
+        { "name": "Citronnade aux amandes", "price": 7, "image": "/images/menu/jus/citronnade-aux-amandes.jpg" },
+        { "name": "Banane", "price": 7.2, "image": "/images/menu/jus/banane.jpg" },
+        { "name": "Cocktail au choix", "price": 9.6, "image": "/images/menu/jus/cocktail-au-choix.jpg" }
+      ]
+    },
+    {
+      "id": "mojitos",
+      "name": "Mojitos",
+      "items": [
+        { "name": "Virgin", "price": 8.8, "image": "/images/menu/mojitos/virgin.jpg" },
+        { "name": "Mojito bleu", "price": 9.8, "image": "/images/menu/mojitos/mojito-bleu.jpg" },
+        { "name": "Pomme verte", "price": 10.8, "image": "/images/menu/mojitos/pomme-verte.jpg" },
+        { "name": "Kiwi", "price": 10.8, "image": "/images/menu/mojitos/kiwi.jpg" },
+        { "name": "Myrtille (Blueberry)", "price": 10.8, "image": "/images/menu/mojitos/myrtille-blueberry.jpg" },
+        { "name": "Fruits rouges", "price": 10.8, "image": "/images/menu/mojitos/fruits-rouges.jpg" },
+        { "name": "Fraise (Strawberry)", "price": 10.8, "image": "/images/menu/mojitos/fraise-strawberry.jpg" },
+        { "name": "Fruit de la passion", "price": 10.8, "image": "/images/menu/mojitos/fruit-de-la-passion.jpg" },
+        { "name": "Mangue", "price": 10.8, "image": "/images/menu/mojitos/mangue.jpg" },
+        { "name": "Framboise", "price": 10.8, "image": "/images/menu/mojitos/framboise.jpg" },
+        { "name": "Énergie", "price": 12.8, "image": "/images/menu/mojitos/energie.jpg" }
+      ]
+    },
+    {
+      "id": "frappuccinos-milkshakes",
+      "name": "Frappuccinos & Milkshakes",
+      "items": [
+        { "name": "Caramel", "price": 10.6, "image": "/images/menu/frappuccinos-milkshakes/caramel.jpg" },
+        { "name": "Chocolat noir", "price": 10.6, "image": "/images/menu/frappuccinos-milkshakes/chocolat-noir.jpg" },
+        { "name": "Nutella", "price": 11.6, "image": "/images/menu/frappuccinos-milkshakes/nutella.jpg" },
+        { "name": "Noisette", "price": 13, "image": "/images/menu/frappuccinos-milkshakes/noisette.jpg" },
+        { "name": "Pistache", "price": 15, "image": "/images/menu/frappuccinos-milkshakes/pistache.jpg" },
+        { "name": "Spéculoos", "price": 15, "image": "/images/menu/frappuccinos-milkshakes/speculoos.jpg" }
+      ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "items": [
+        { "name": "Classique", "price": 8.8, "image": "/images/menu/matcha/classique.jpg" },
+        { "name": "Matcha aux fruits", "price": 11.8, "image": "/images/menu/matcha/matcha-aux-fruits.jpg" }
+      ]
+    },
+    {
+      "id": "crepes-salees-omelettes",
+      "name": "Crêpes Salées / Omelettes",
+      "items": [
+        { "name": "Fromage", "price": 8.5, "image": "/images/menu/crepes-salees-omelettes/fromage.jpg" },
+        { "name": "Jambon fromage", "price": 11.2, "image": "/images/menu/crepes-salees-omelettes/jambon-fromage.jpg" },
+        { "name": "Pepperoni fromage", "price": 11.2, "image": "/images/menu/crepes-salees-omelettes/pepperoni-fromage.jpg" },
+        { "name": "Thon fromage", "price": 11.6, "image": "/images/menu/crepes-salees-omelettes/thon-fromage.jpg" },
+        { "name": "Poulet fromage", "price": 11.6, "image": "/images/menu/crepes-salees-omelettes/poulet-fromage.jpg" },
+        { "name": "4 fromages", "description": "Emmental, mozzarella, gruyère, cheddar", "price": 12.6, "image": "/images/menu/crepes-salees-omelettes/4-fromages.jpg" },
+        { "name": "Poulet fromage champignons", "price": 13.6, "image": "/images/menu/crepes-salees-omelettes/poulet-fromage-champignons.jpg" },
+        { "name": "Crêpe burger", "price": 13.5, "image": "/images/menu/crepes-salees-omelettes/crepe-burger.jpg" },
+        { "name": "Crêpe lasagne", "price": 15.5, "image": "/images/menu/crepes-salees-omelettes/crepe-lasagne.jpg" },
+        { "name": "Healthy", "description": "Fromage à la crème, légumes, poulet grillé", "price": 13.5, "image": "/images/menu/crepes-salees-omelettes/healthy.jpg" },
+        { "name": "Crème chèvrettes", "price": 16.5, "image": "/images/menu/crepes-salees-omelettes/creme-chevrettes.jpg" }
+      ]
+    },
+    {
+      "id": "crepes-gaufres-pancakes",
+      "name": "Crêpes / Gaufres / Pancakes",
+      "note": "Tous à la crème",
+      "items": [
+        { "name": "Nutella", "price": 9, "image": "/images/menu/crepes-gaufres-pancakes/nutella.jpg" },
+        { "name": "Nutella beurre de cacahuète", "price": 10, "image": "/images/menu/crepes-gaufres-pancakes/nutella-beurre-de-cacahuete.jpg" },
+        { "name": "Crème Citron", "price": 10, "image": "/images/menu/crepes-gaufres-pancakes/creme-citron.jpg" },
+        { "name": "Nutella banane", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/nutella-banane.jpg" },
+        { "name": "Nutella caramel beurre salé", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/nutella-caramel-beurre-sale.jpg" },
+        { "name": "Tiramisu", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/tiramisu.jpg" },
+        { "name": "Nutella Kinder Bueno", "price": 12.5, "image": "/images/menu/crepes-gaufres-pancakes/nutella-kinder-bueno.jpg" },
+        { "name": "Nutella fruits secs", "price": 12.5, "image": "/images/menu/crepes-gaufres-pancakes/nutella-fruits-secs.jpg" },
+        { "name": "Nutella Oreo", "price": 13, "image": "/images/menu/crepes-gaufres-pancakes/nutella-oreo.jpg" },
+        { "name": "Nutella spéculoos", "price": 14, "image": "/images/menu/crepes-gaufres-pancakes/nutella-speculoos.jpg" },
+        { "name": "Crème Fraise", "price": 10.5, "image": "/images/menu/crepes-gaufres-pancakes/creme-fraise.jpg" },
+        { "name": "Crème Fruits rouges", "price": 11.8, "image": "/images/menu/crepes-gaufres-pancakes/creme-fruits-rouges.jpg" },
+        { "name": "Crème Zouza", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/creme-zouza.jpg" },
+        { "name": "Crème Amande", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/creme-amande.jpg" },
+        { "name": "Crème Blueberry", "price": 12, "image": "/images/menu/crepes-gaufres-pancakes/creme-blueberry.jpg" },
+        { "name": "Crème Noisette", "price": 13, "image": "/images/menu/crepes-gaufres-pancakes/creme-noisette.jpg" },
+        { "name": "Crème Marrakech", "description": "Datte + noix de cajou", "price": 13.5, "image": "/images/menu/crepes-gaufres-pancakes/creme-marrakech.jpg" },
+        { "name": "Crème Kiwi Banane", "price": 13.5, "image": "/images/menu/crepes-gaufres-pancakes/creme-kiwi-banane.jpg" },
+        { "name": "Crème Pistache", "price": 14, "image": "/images/menu/crepes-gaufres-pancakes/creme-pistache.jpg" },
+        { "name": "Crème Pistache Framboise", "price": 14.5, "image": "/images/menu/crepes-gaufres-pancakes/creme-pistache-framboise.jpg" }
+      ]
+    },
+    {
+      "id": "panini-toast",
+      "name": "Panini / Toast",
+      "items": [
+        { "name": "Poulet fromage", "price": 7.5, "image": "/images/menu/panini-toast/poulet-fromage.jpg" },
+        { "name": "Thon fromage", "price": 7.5, "image": "/images/menu/panini-toast/thon-fromage.jpg" },
+        { "name": "Jambon fromage", "price": 7, "image": "/images/menu/panini-toast/jambon-fromage.jpg" },
+        { "name": "Pepperoni fromage", "price": 7, "image": "/images/menu/panini-toast/pepperoni-fromage.jpg" },
+        { "name": "Fromage", "price": 6, "image": "/images/menu/panini-toast/fromage.jpg" }
+      ]
+    }
+  ]
+}

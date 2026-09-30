@@ -1,0 +1,101 @@
+---
+import { shop } from "../lib/menu";
+import { withBase } from "../lib/paths";
+import Herb from "./Herb.astro";
+
+const links = [
+  { href: "#menu", label: "Menu" },
+  { href: "#visite", label: "Nous trouver" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header class="site-header container">
+  <Herb class="site-header__vine site-header__vine--left" />
+  <Herb class="site-header__vine site-header__vine--right" />
+  <a class="site-header__logo reveal" href={withBase("/")}>
+    <img src={withBase("/images/brand/logo.webp")} alt={`${shop.name}, ${shop.tagline}`} width="187" height="320" />
+  </a>
+  <nav class="reveal" style="--i: 1" aria-label="Navigation principale">
+    <ul class="site-header__nav">
+      {
+        links.map(({ href, label }) => (
+          <li>
+            <a class="action site-header__link" href={href}>
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-sm);
+    padding-block: var(--space-lg) var(--space-md);
+  }
+
+  .site-header__logo img {
+    width: auto;
+    height: clamp(6rem, 11vw, 8rem);
+  }
+
+  /* Vines hang from the page's top edge, well inside the sides so no leaf is cut. */
+  .site-header :global(.site-header__vine) {
+    position: absolute;
+    inset-block-start: 0;
+    z-index: -1;
+  }
+
+  /* Phones: the vines curve outward, so their lower leaves stay clear of the nav and they can be larger.
+     Wider screens: they curve inward, framing the logo. */
+  .site-header :global(.site-header__vine--left) {
+    inset-inline-start: 0.25rem;
+    width: clamp(3rem, 15vw, 4.5rem);
+    --sway: 8s;
+  }
+
+  .site-header :global(.site-header__vine--right) {
+    inset-inline-end: 0.25rem;
+    /* Grows faster than the left one: on the narrowest phones "Contact" sits close to it. */
+    width: clamp(3rem, 24vw - 1.5rem, 5.25rem);
+    scale: -1 1;
+    --sway: 6.5s;
+  }
+
+  @media (min-width: 40rem) {
+    .site-header :global(.site-header__vine--left) {
+      --vine-width: clamp(2.25rem, 7vw, 6.5rem);
+      /* The extra 28% of its width keeps the mirrored vine where it sat before the pivot moved to its centre. */
+      inset-inline-start: calc(clamp(0.25rem, 4vw, 5rem) + 0.28 * var(--vine-width));
+      width: var(--vine-width);
+      scale: -1 1;
+    }
+
+    .site-header :global(.site-header__vine--right) {
+      inset-inline-end: clamp(0.25rem, 4vw, 5rem);
+      width: clamp(2.5rem, 9vw, 8.5rem);
+      scale: none;
+    }
+  }
+
+  .site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-header__link {
+    font-size: var(--text-base);
+  }
+</style>
