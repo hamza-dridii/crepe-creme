@@ -112,15 +112,15 @@
       "id": "smoothies",
       "name": "Smoothies",
       "items": [
-        { "name": "Myrtille (Blueberry)", "price": 10, "image": "/images/menu/smoothies/myrtille-blueberry.jpg" },
-        { "name": "Fruits rouges", "price": 10, "image": "/images/menu/smoothies/fruits-rouges.jpg" },
-        { "name": "Pomme verte", "price": 10, "image": "/images/menu/smoothies/pomme-verte.jpg" },
-        { "name": "Kiwi", "price": 10, "image": "/images/menu/smoothies/kiwi.jpg" },
-        { "name": "Fruits de la passion", "price": 10, "image": "/images/menu/smoothies/fruits-de-la-passion.jpg" },
-        { "name": "Mangue", "price": 10, "image": "/images/menu/smoothies/mangue.jpg" },
-        { "name": "Ananas", "price": 10, "image": "/images/menu/smoothies/ananas.jpg" },
-        { "name": "Framboise", "price": 10, "image": "/images/menu/smoothies/framboise.jpg" },
-        { "name": "Pêche", "price": 10, "image": "/images/menu/smoothies/peche.jpg" }
+        { "name": "Myrtille (Blueberry)", "price": 10, "image": "/images/fwdsmothies/smo (1).jpg" },
+        { "name": "Fruits rouges", "price": 10, "image": "/images/fwdsmothies/smo (2).jpg" },
+        { "name": "Pomme verte", "price": 10, "image": "/images/fwdsmothies/smo (3).jpg" },
+        { "name": "Kiwi", "price": 10, "image": "/images/fwdsmothies/smo (4).jpg" },
+        { "name": "Fruits de la passion", "price": 10, "image": "/images/fwdsmothies/smo (5).jpg" },
+        { "name": "Mangue", "price": 10, "image": "/images/fwdsmothies/smo (6).jpg" },
+        { "name": "Ananas", "price": 10, "image": "/images/fwdsmothies/smo (7).jpg" },
+        { "name": "Framboise", "price": 10, "image": "/images/fwdsmothies/smo (8).jpg" },
+        { "name": "Pêche", "price": 10, "image": "/images/fwdsmothies/smo (9).jpg" }
       ]
     },
     {
