@@ -48,17 +48,17 @@
       "id": "cafes",
       "name": "Cafés",
       "items": [
-        { "name": "Express", "price": 3.5, "image": "/images/menu/cafes/express.jpg" },
-        { "name": "Américain", "price": 3.6, "image": "/images/menu/cafes/americain.jpg" },
-        { "name": "Capucin", "price": 3.8, "image": "/images/menu/cafes/capucin.jpg" },
-        { "name": "Café crème", "price": 4, "image": "/images/menu/cafes/cafe-creme.jpg" },
-        { "name": "Nescafé", "price": 4, "image": "/images/menu/cafes/nescafe.jpg" },
-        { "name": "Chocolat au lait", "price": 3.8, "image": "/images/menu/cafes/chocolat-au-lait.jpg" },
+        { "name": "Express", "price": 3.5, "image": "/images/cafes/cafe (1).webp" },
+        { "name": "Américain", "price": 3.6, "image": "/images/cafes/cafe (2).jpg" },
+        { "name": "Capucin", "price": 3.8, "image": "/images/cafes/cafe (1).jpeg" },
+        { "name": "Café crème", "price": 4, "image": "images/cafes/cafe (3).jpeg" },
+        { "name": "Nescafé", "price": 4, "image": "images/cafes/cafe (2).jpeg" },
+        { "name": "Chocolat au lait", "price": 3.8, "image": "images/cafes/cafe (1).jpg" },
         { "name": "Cappuccino", "price": 5.8, "image": "/images/menu/cafes/cappuccino.jpg" },
-        { "name": "Café turc", "price": 3.8, "image": "/images/menu/cafes/cafe-turc.jpg" },
+        { "name": "Café turc", "price": 3.8, "image": "images/cafes/cafe (13).jpeg" },
         { "name": "Café Nutella", "price": 8.8, "image": "/images/menu/cafes/cafe-nutella.jpg" },
-        { "name": "Café aromatisé", "description": "Noisette, vanille, chocolat blanc, beurre salé", "price": 5.5, "image": "/images/menu/cafes/cafe-aromatise.jpg" },
-        { "name": "Café pistache (Latte)", "price": 9.8, "image": "/images/menu/cafes/cafe-pistache-latte.jpg" },
+        { "name": "Café aromatisé", "description": "Noisette, vanille, chocolat blanc, beurre salé", "price": 5.5, "image": "/images/cafes/cafe (80).jpeg" },
+        { "name": "Café pistache (Latte)", "price": 9.8, "image": "/images/cafes/cafe (15).jpg" },
         { "name": "Café noisette (Latte)", "price": 8.8, "image": "/images/menu/cafes/cafe-noisette-latte.jpg" },
         { "name": "Café spéculoos (Latte)", "price": 9.8, "image": "/images/menu/cafes/cafe-speculoos-latte.jpg" },
         { "name": "Café vanille (Latte)", "price": 5.5, "image": "/images/menu/cafes/cafe-vanille-latte.jpg" },
@@ -129,12 +129,12 @@
       "id": "jus",
       "name": "Jus",
       "items": [
-        { "name": "Citronnade", "price": 4.8, "image": "/images/menu/jus/citronnade.jpg" },
-        { "name": "Orange", "price": 4.8, "image": "/images/menu/jus/orange.jpg" },
-        { "name": "Kiwi", "price": 7, "image": "/images/menu/jus/kiwi.jpg" },
-        { "name": "Citronnade aux amandes", "price": 7, "image": "/images/menu/jus/citronnade-aux-amandes.jpg" },
-        { "name": "Banane", "price": 7.2, "image": "/images/menu/jus/banane.jpg" },
-        { "name": "Cocktail au choix", "price": 9.6, "image": "/images/menu/jus/cocktail-au-choix.jpg" }
+        { "name": "Citronnade", "price": 4.8, "image": "/images/juss/jus (2).jpg" },
+        { "name": "Orange", "price": 4.8, "image": "/images/juss/jus (4).jpeg" },
+        { "name": "Kiwi", "price": 7, "image": "/images/juss/jus (3).jpg" },
+        { "name": "Citronnade aux amandes", "price": 7, "image": "/images/juss/jus (1).jpeg" },
+        { "name": "Banane", "price": 7.2, "image": "/images/juss/jus (2).jpeg" },
+        { "name": "Cocktail au choix", "price": 9.6, "image": "/images/juss/jus (1).jpg" }
       ]
     },
     {
@@ -170,24 +170,24 @@
       "id": "matcha",
       "name": "Matcha",
       "items": [
-        { "name": "Classique", "price": 8.8, "image": "/images/matcha/matcha (1).jpg" },
-        { "name": "Matcha aux fruits", "price": 11.8, "image": "/images/matcha/matcha (2).jpg" }
+        { "name": "Classique", "price": 8.8, "image": "/images/matcha/matcha (2).jpg" },
+        { "name": "Matcha aux fruits", "price": 11.8, "image": "/images/matcha/matcha (1).jpg" }
       ]
     },
     {
       "id": "crepes-salees-omelettes",
       "name": "Crêpes Salées / Omelettes",
       "items": [
-        { "name": "Fromage", "price": 8.5, "image": "/images/crepsale/crepsale (1).jpg" },
-        { "name": "Jambon fromage", "price": 11.2, "image": "/images/crepsale//crepsale (2).jpg" },
-        { "name": "Pepperoni fromage", "price": 11.2, "image": "/images/crepsale//crepsale (3).jpg" },
-        { "name": "Thon fromage", "price": 11.6, "image": "/images/crepsale//crepsale (4).jpg" },
-        { "name": "Poulet fromage", "price": 11.6, "image": "/images/crepsale//crepsale (5).jpg" },
-        { "name": "4 fromages", "description": "Emmental, mozzarella, gruyère, cheddar", "price": 12.6, "image": "/images/crepsale//crepsale (6).jpg" },
-        { "name": "Poulet fromage champignons", "price": 13.6, "image": "/images/crepsale//crepsale (7).jpg" },
-        { "name": "Crêpe burger", "price": 13.5, "image": "/images/crepsale//crepsale (8).jpg" },
-        { "name": "Crêpe lasagne", "price": 15.5, "image": "/images/crepsale//crepsale (9).jpg" },
-        { "name": "Healthy", "description": "Fromage à la crème, légumes, poulet grillé", "price": 13.5, "image": "/images/crepsale//crepsale (11).jpg" },
+        { "name": "Fromage", "price": 8.5, "image": "/images/crepsale/crepsale (14).jpg" },
+        { "name": "Jambon fromage", "price": 11.2, "image": "/images/crepsale/crepsale (15).jpg" },
+        { "name": "Pepperoni fromage", "price": 11.2, "image": "/images/crepsale/crepsale (12).png" },
+        { "name": "Thon fromage", "price": 11.6, "image": "/images/crepsale//crepsale (12).jpg" },
+        { "name": "Poulet fromage", "price": 11.6, "image": "/images/crepsale//crepsale (14).jpg" },
+        { "name": "4 fromages", "description": "Emmental, mozzarella, gruyère, cheddar", "price": 12.6, "image": "/images/crepsale//crepsale (13).jpg" },
+        { "name": "Poulet fromage champignons", "price": 13.6, "image": "/images/crepsale//crepsale (14).jpg" },
+        { "name": "Crêpe burger", "price": 13.5, "image": "/images/crepsale//crepsale (11).jpg" },
+        { "name": "Crêpe lasagne", "price": 15.5, "image": "/images/crepsale//crepsale (16).jpg" },
+        { "name": "Healthy", "description": "Fromage à la crème, légumes, poulet grillé", "price": 13.5, "image": "/images/crepsale//crepsale (9).jpg" },
         { "name": "Crème chèvrettes", "price": 16.5, "image": "/images/crepsale//crepsale (2).jpg" }
       ]
     },
@@ -196,25 +196,29 @@
       "name": "Crêpes / Gaufres / Pancakes",
       "note": "Tous à la crème",
       "items": [
-        { "name": "Nutella", "price": 9, "image": "/images/crepesucre/crepzsucre (1).jpg" },
-        { "name": "Nutella beurre de cacahuète", "price": 10, "image": "/images/crepesucre/crepzsucre (000).jpg" },
+        { "name": "Nutella", "price": 9, "image": "/images/crepesucre/crepzsucre (00).jpg" },
+        { "name": "Nutella beurre de cacahuète", "price": 10, "image": "/images/crepesucre/crepzsucre (15).jpg" },
         { "name": "Crème Citron", "price": 10, "image": "/images/crepesucre/crepzsucre (6).jpg" },
-        { "name": "Nutella banane", "price": 12, "image": "/images/crepesucre/crepzsucre (4).jpg" },
+        { "name": "Nutella banane", "price": 12, "image": "/images/crepesucre/crepzsucre (14).jpg" },
         { "name": "Nutella caramel beurre salé", "price": 12, "image": "/images/crepesucre/crepzsucre (11).jpg" },
         { "name": "Tiramisu", "price": 12, "image": "/images/crepesucre/crepzsucre (5).jpg" },
         { "name": "Nutella Kinder Bueno", "price": 12.5, "image": "/images/crepesucre/crepzsucre (3).jpg" },
-        { "name": "Nutella fruits secs", "price": 12.5, "image": "/images/crepesucre/crepzsucre (8).jpg" },
-        { "name": "Nutella Oreo", "price": 13, "image": "/images/crepesucre/crepzsucre (9).jpg" },
-        { "name": "Nutella spéculoos", "price": 14, "image": "/images/crepesucre/crepzsucre (20).jpg" },
+        { "name": "Nutella fruits secs", "price": 12.5, "image": "/images/crepesucre/crepzsucre (800).jpg" },
+        { "name": "Nutella Oreo", "price": 13, "image": "/images/crepesucre/crepzsucre (1).jpg" },
+        { "name": "Nutella spéculoos", "price": 14, "image": "/images/crepesucre/crepzsucre (16).jpg" },
         { "name": "Crème Fraise", "price": 10.5, "image": "/images/crepesucre/crepzsucre (7).jpg" },
-        { "name": "Crème Fruits rouges", "price": 11.8, "image": "/images/crepesucre/crepzsucre (12).jpg" },
-        { "name": "Crème Zouza", "price": 12, "image": "/images/crepesucre/crepzsucre (13).jpg" },
-        { "name": "Crème Amande", "price": 12, "image": "/images/crepesucre/crepzsucre (14).jpg" },
+        { "name": "Crème Fruits rouges", "price": 11.8, "image": "/images/crepesucre/crepzsucre (6).jpg" },
+        { "name": "Crème Zouza", "price": 12, "image": "/images/crepesucre/crepzsucre ().jpg" },
+        { "name": "Crème Amande", "price": 12, "image": "/images/crepesucre/crepzsucre (12).jpg" },
         { "name": "Crème Blueberry", "price": 12, "image": "/images/crepesucre/crepzsucre (15).jpg" },
         { "name": "Crème Noisette", "price": 13, "image": "/images/crepesucre/crepzsucre (16).jpg" },
-        { "name": "Crème Marrakech", "description": "Datte + noix de cajou", "price": 13.5, "image": "/images/crepesucre/crepzsucre (17).jpg" },
-        { "name": "Crème Kiwi Banane", "price": 13.5, "image": "/images/crepesucre/crepzsucre (18).jpg" },
-        { "name": "Crème Pistache", "price": 14, "image": "/images/crepesucre/crepzsucre (19).jpg" },
+        { "name": "Crème Marrakech", "description": "Datte + noix de cajou", "price": 13.5, "image": "/images/crepesucre/crepzsucre ().jpg" },
+        { "name": "Crème Kiwi Banane", "price": 13.5, "image": "/images/crepesucre/crepzsucre (17).jpg" },
+        { "name": "Crème Pistache", "price": 14, "image": "/images/crepesucre/crepzsucre (13).jpg" },
+        { "name": "Crème Pistache/noisette", "price": 14, "image": "/images/crepesucre/crepzsucre (9).jpg" },
+        { "name": "crêpe cajou", "price": 14, "image": "/images/crepesucre/crepzsucre (18).jpg" },
+        
+
         { "name": "Crème Pistache Framboise", "price": 14.5,"image": "/images/crepesucre/crepzsucre (10).jpg" }
       ]
     },
@@ -222,11 +226,11 @@
       "id": "panini-toast",
       "name": "Panini / Toast",
       "items": [
-        { "name": "Poulet fromage", "price": 7.5, "image": "/images/crepsale//crepsale (3).jpg" },
-        { "name": "Thon fromage", "price": 7.5, "image": "/images/crepsale//crepsale (6).jpg" },
-        { "name": "Jambon fromage", "price": 7, "image": "/images/crepsale//crepsale (8).jpg" },
-        { "name": "Pepperoni fromage", "price": 7, "image": "/images/crepsale//crepsale (3).jpg" },
-        { "name": "Fromage", "price": 6, "image": "/images/crepsale//crepsale (8).jpg" }
+        { "name": "Poulet fromage", "price": 7.5, "image": "/images/crepsale/crepsale (3).jpg" },
+        { "name": "Thon fromage", "price": 7.5, "image": "/images/crepsale/crepsale (6).jpg" },
+        { "name": "Jambon fromage", "price": 7, "image": "/images/crepsale/crepsale (8).jpg" },
+        { "name": "Pepperoni fromage", "price": 7, "image": "/images/crepsale/crepsale (3).jpg" },
+        { "name": "Fromage", "price": 6, "image": "/images/crepsale/crepsale (8).jpg" }
       ]
     }
   ]
